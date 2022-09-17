@@ -1,0 +1,22 @@
+extends layout
+
+block content
+
+  form(class='my-form' method='POST')
+    label(for="inp" class='inp')
+      input(type="text" name='first' class='myinput' autocomplete='off')
+      span(class='label') first name
+      span(class='focus-bg')
+    label(for="inp" class='inp')
+      input(type="text" name='last' class='myinput' autocomplete='off')
+      span(class='label') last name
+      span(class='focus-bg')
+    label(for="inp" class='inp')
+      input(type="text" name='phone' class='myinput' autocomplete='off')
+      span(class='label') phone number
+      span(class='focus-bg')
+    label(for="inp" class='inp')
+      input(type="email" name='email' class='myinput' autocomplete='off')
+      span(class='label') email
+      span(class='focus-bg')
+    button(class='submit-btn') next
