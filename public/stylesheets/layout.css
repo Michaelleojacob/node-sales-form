@@ -1,6 +1,15 @@
 .root{
+  height: 100%;
+  background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('../images/solar_patrick-pleul-picture-alliance-getty-2048x1391.jpg');
+}
+
+.solar-svg{
+  max-height: 5rem;
+}
+
+.main{
+  padding: 5rem;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  background-color: black;
+  gap: var(--gap);
 }

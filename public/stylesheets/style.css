@@ -2,6 +2,10 @@
 @import './form.css';
 @import './footer.css';
 
+:root {
+  --gap: 1rem;
+}
+
 html, body {
   padding: 0;
   margin: 0;
@@ -10,21 +14,4 @@ html, body {
 
 *{
   box-sizing: border-box;
-}
-
-
-
-
-.root{
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('../images/solar_patrick-pleul-picture-alliance-getty-2048x1391.jpg');
-  padding: 5rem;
-  gap: 1rem;
-}
-
-
-.solar-svg{
-  max-height: 5rem;
 }
