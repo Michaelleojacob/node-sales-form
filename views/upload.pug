@@ -1,0 +1,8 @@
+extends layout
+
+block content
+
+  form(class='upload-form' method='POST')
+    lbael(for='upload-input' class='upload-label')
+    input(type="file" id="myFile" name="filename")
+    button(type='submit') submit

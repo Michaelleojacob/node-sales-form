@@ -34,8 +34,9 @@ router.post('/', [
       });
       return;
     }
-    // sendMail(first, last, email, phone);
-    res.redirect('/');
+    global.userInfo = { first, last, email, phone };
+    sendMail(first, last, email, phone);
+    res.redirect('/upload');
   },
 ]);
 
