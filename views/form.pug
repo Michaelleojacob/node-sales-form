@@ -4,19 +4,24 @@ block content
 
   form(class='my-form' method='POST')
     label(for="inp" class='inp')
-      input(type="text" name='first' class='myinput' autocomplete='off')
+      input(type="text" name='first' class='myinput' autocomplete='off' value=undefined === first ? '' : first)
       span(class='label') first name
       span(class='focus-bg')
     label(for="inp" class='inp')
-      input(type="text" name='last' class='myinput' autocomplete='off')
+      input(type="text" name='last' class='myinput' autocomplete='off' value=undefined === last ? '' : last)
       span(class='label') last name
       span(class='focus-bg')
     label(for="inp" class='inp')
-      input(type="text" name='phone' class='myinput' autocomplete='off')
+      input(type="tel" name='phone' class='myinput' autocomplete='off' value=undefined === phone ? '' : phone)
       span(class='label') phone number
       span(class='focus-bg')
     label(for="inp" class='inp')
-      input(type="email" name='email' class='myinput' autocomplete='off')
+      input(type="email" name='email' class='myinput' autocomplete='off' value=undefined === email ? '' : email)
       span(class='label') email
       span(class='focus-bg')
     button(class='submit-btn') next
+
+  if errors
+    ul(class='errors')
+      each error in errors
+        li!= error.msg

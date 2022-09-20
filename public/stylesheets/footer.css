@@ -4,3 +4,8 @@
   align-items: center;
   gap: 0.5rem;
 }
+
+.contact-me-div{
+  border-bottom: 1px solid black;
+  padding: 0.2rem;
+}
