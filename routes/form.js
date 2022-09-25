@@ -5,12 +5,7 @@ const { body, validationResult } = require('express-validator');
 const userinfo = require('../globals/userInfo.js');
 
 formRouter.get('/', (req, res, next) => {
-  res.render('form', {
-    first: 'm',
-    last: 'j',
-    email: 'm@gmail.com',
-    phone: '6198711891',
-  });
+  res.render('form');
 });
 
 formRouter.post('/', [
