@@ -1,13 +1,19 @@
 const express = require('express');
-const router = express();
-const sendMail = require('../utils/sendmail.js');
+const formRouter = express();
+const { sendMail } = require('../utils/sendmail.js');
 const { body, validationResult } = require('express-validator');
+const userinfo = require('../globals/userInfo.js');
 
-router.get('/', (req, res, next) => {
-  res.render('form');
+formRouter.get('/', (req, res, next) => {
+  res.render('form', {
+    first: 'm',
+    last: 'j',
+    email: 'm@gmail.com',
+    phone: '6198711891',
+  });
 });
 
-router.post('/', [
+formRouter.post('/', [
   body('first', 'first name is required').trim().isLength({ min: 1 }).escape(),
   body('last', 'last name is required').trim().isLength({ min: 1 }).escape(),
   body('phone', 'phone number is invalid')
@@ -34,10 +40,10 @@ router.post('/', [
       });
       return;
     }
-    global.userInfo = { first, last, email, phone };
+    userinfo.setAll(first, last, email, phone);
     sendMail(first, last, email, phone);
     res.redirect('/upload');
   },
 ]);
 
-module.exports = router;
+module.exports = formRouter;
