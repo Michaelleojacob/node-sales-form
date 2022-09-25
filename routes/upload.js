@@ -22,12 +22,4 @@ router.post('/', upload.single('filename'), async (req, res) => {
   res.redirect('/upload');
 });
 
-// router.post('/', (req, res, next) => {
-//   const form = formidable({ uploadDir: __dirname + './../public/uploads' });
-//   form.parse(req, (err, fields, files) => {
-//     sendUploadEmail(files.filename.originalFilename, files.filename.filepath);
-//   });
-//   res.redirect('/upload');
-// });
-
 module.exports = router;
