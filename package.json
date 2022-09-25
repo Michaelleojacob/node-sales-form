@@ -2,6 +2,7 @@
   "name": "node-only",
   "version": "0.0.0",
   "private": true,
+  "homepage": ".",
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www"
