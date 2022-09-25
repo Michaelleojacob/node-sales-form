@@ -6,6 +6,7 @@ const logger = require('morgan');
 
 const formRouter = require('./routes/form.js');
 const uploadRouter = require('./routes/upload.js');
+const thankyouRouter = require('./routes/thankyou.js');
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(logger('tiny'));
 
 app.use('/', formRouter);
 app.use('/upload', uploadRouter);
+app.use('/thankyou', thankyouRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

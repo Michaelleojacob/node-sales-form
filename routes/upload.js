@@ -19,7 +19,8 @@ router.post('/', upload.single('filename'), async (req, res) => {
   fs.unlink(`${__dirname}/../${req.file.path}`, (err) => {
     if (err) console.log(err);
   });
-  res.redirect('/upload');
+  res.redirect('thankyou');
+  // res.redirect('/upload');
 });
 
 module.exports = router;

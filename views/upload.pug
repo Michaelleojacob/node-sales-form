@@ -2,7 +2,12 @@ extends layout
 
 block content
 
+  div [optional] For a quicker quote, submit your energy bill
+
   form(class='upload-form' enctype="multipart/form-data" method='POST')
     lbael(for='upload-input' class='upload-label')
-    input(type="file" id="myFile" name="filename")
+    input(type="file" id="myFile" name="filename" required)
     button(type='submit') submit
+
+  a(href='/thankyou')
+    button skip
