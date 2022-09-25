@@ -14,7 +14,7 @@ async function sendMail(first, last, email, phone) {
   });
   const mailOption = {
     from: process.env.SMTP_USERNAME,
-    to: process.env.SMTP_SENDTOTEST,
+    to: process.env.SMTP_SENDTO,
     subject: 'new client',
     html: `<div>New client info:</div>
     <div>Email : ${email}</div>
@@ -43,7 +43,7 @@ async function sendUploadEmail(userInfo, filename, filepath) {
   });
   const mailOption = {
     from: process.env.SMTP_USERNAME,
-    to: process.env.SMTP_SENDTOTEST,
+    to: process.env.SMTP_SENDTO,
     subject: 'new client+attachment',
     html: `<div>New client info:</div>
     <div>Email : ${userInfo.email}</div>
