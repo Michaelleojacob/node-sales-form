@@ -4,7 +4,7 @@ block content
 
   div Contact Info:
 
-  form(class='my-form' method='POST')
+  form(class='my-form' enctype="multipart/form-data" method='POST')
     label(for="inp" class='inp')
       input(type="text" name='first' class='myinput' autocomplete='off' value=undefined === first ? '' : first)
       span(class='label') first name
@@ -21,7 +21,12 @@ block content
       input(type="email" name='email' class='myinput' autocomplete='off' value=undefined === email ? '' : email)
       span(class='label') email
       span(class='focus-bg')
-    button(class='submit-btn') next
+    div [optional] For a quicker quote, submit your energy bill
+    label(for='upload-input' class='upload-label')
+      input(type="file" id="myFile" name="filename" )
+    button(class='submit-btn') submit
+
+
 
   if errors
     ul(class='errors')

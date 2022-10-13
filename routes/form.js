@@ -1,44 +1,54 @@
 const express = require('express');
 const formRouter = express();
-const { sendMail } = require('../utils/sendmail.js');
+const fs = require('fs');
+const { sendUploadEmail, sendMail } = require('../utils/sendmail.js');
 const { body, validationResult } = require('express-validator');
-const userinfo = require('../globals/userInfo.js');
+const multer = require('multer');
+const upload = multer({ dest: './uploads' });
+const validateForm = require('../validators/form.js');
 
 formRouter.get('/', (req, res, next) => {
   res.render('form');
 });
 
-formRouter.post('/', [
-  body('first', 'first name is required').trim().isLength({ min: 1 }).escape(),
-  body('last', 'last name is required').trim().isLength({ min: 1 }).escape(),
-  body('phone', 'phone number is invalid')
-    .trim()
-    .isLength({ min: 9 })
-    .isMobilePhone()
-    .escape(),
-  body('email', 'email is invalid')
-    .trim()
-    .isLength({ min: 3 })
-    .isEmail()
-    .escape(),
-  (req, res, next) => {
+formRouter.post(
+  '/',
+  upload.single('filename'),
+  validateForm,
+  async (req, res, next) => {
     const errors = validationResult(req);
     const { first, last, phone, email } = req.body;
     // there are errors
     if (!errors.isEmpty()) {
-      res.render('form', {
+      const filtered = errors
+        .array()
+        .filter((item) => item.msg !== 'Invalid value');
+
+      return res.render('form', {
         first,
         last,
         phone,
         email,
-        errors: errors.array({ onlyFirstError: true }),
+        errors: filtered,
       });
-      return;
     }
-    userinfo.setAll(first, last, email, phone);
-    sendMail(first, last, email, phone);
-    res.redirect('/upload');
-  },
-]);
+    if (req.file) {
+      await sendUploadEmail(
+        first,
+        last,
+        phone,
+        email,
+        req.file.originalname,
+        `${__dirname}/../${req.file.path}`
+      );
+      fs.unlink(`${__dirname}/../${req.file.path}`, (err) => {
+        if (err) console.log(err);
+      });
+      return res.render('thankyou', { name: first });
+    }
+    await sendMail(first, last, phone, email);
+    return res.render('thankyou', { name: first });
+  }
+);
 
 module.exports = formRouter;

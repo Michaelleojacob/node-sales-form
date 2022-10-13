@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express();
-const userinfo = require('../globals/userInfo.js');
 const fs = require('fs');
 const { sendUploadEmail } = require('../utils/sendmail.js');
 const multer = require('multer');

@@ -30,7 +30,7 @@ async function sendMail(first, last, email, phone) {
   }
 }
 
-async function sendUploadEmail(userInfo, filename, filepath) {
+async function sendUploadEmail(first, last, email, phone, filename, filepath) {
   // console.log(filename, filepath);
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -43,13 +43,13 @@ async function sendUploadEmail(userInfo, filename, filepath) {
   });
   const mailOption = {
     from: process.env.SMTP_USERNAME,
-    to: process.env.SMTP_SENDTO,
+    to: process.env.SMTP_SENDTOTEST,
     subject: 'new client+attachment',
     html: `<div>New client info:</div>
-    <div>Email : ${userInfo.email}</div>
-    <div>First: ${userInfo.first}</div>
-    <div>Last: ${userInfo.last}</div>
-    <div>Phone: ${userInfo.phone}</div>`,
+    <div>Email : ${email}</div>
+    <div>First: ${first}</div>
+    <div>Last: ${last}</div>
+    <div>Phone: ${phone}</div>`,
     attachments: [
       {
         filename: filename,
