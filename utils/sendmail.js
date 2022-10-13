@@ -43,7 +43,7 @@ async function sendUploadEmail(first, last, email, phone, filename, filepath) {
   });
   const mailOption = {
     from: process.env.SMTP_USERNAME,
-    to: process.env.SMTP_SENDTOTEST,
+    to: process.env.SMTP_SENDTO,
     subject: 'new client+attachment',
     html: `<div>New client info:</div>
     <div>Email : ${email}</div>
